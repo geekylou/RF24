@@ -570,6 +570,8 @@ bool RF24::available(uint8_t* pipe_num)
       write_register(STATUS,_BV(TX_DS));
     }
   }
+  if (!result)
+      result = !(read_register(FIFO_STATUS) & _BV(RX_EMPTY));
 
   return result;
 }
